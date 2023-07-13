@@ -19,14 +19,14 @@ variable                  t_eq      equal     1000.0*${damp_t}         # Equlibr
 variable 				  Nstep  	equal	floor(${t_eq}/${dt}) #--- timesteps
 
 #--- thermalize
-fix              f1  all npt temp ${initTemp} ${initTemp} ${damp_t} x 0.0 0.0 ${damp_p} z 0.0 0.0 ${damp_p}  
-#fix              f1  bulk nvt temp ${initTemp} ${initTemp} ${damp_t}  
+fix              f1  all npt temp ${T} ${T} ${damp_t} iso 0.0 0.0 ${damp_p} #z 0.0 0.0 ${damp_p}  
+#fix              f1  bulk nvt temp ${T} ${T} ${damp_t}  
 #fix             f1  bulk nvt temp $T $T ${damp_t} 
 
 
 #--- fix swap
 variable      ran1 equal round(random(0,999999,10))
-fix           4 bulk atom/swap ${swap_every} ${swap_atoms} ${ran1} ${initTemp} ke no types 1 2 
+fix           4 all atom/swap ${swap_every} ${swap_atoms} ${ran1} ${T} ke no types 1 2 
 
 #-----------------------------
 #--- compute & dump variables

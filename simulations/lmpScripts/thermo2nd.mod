@@ -28,6 +28,6 @@ variable 	   var_swap_accept  equal v_swap_accept
 fix extra all print 10 "${varStep} ${varTime} ${varTemp} ${varVol} ${var_swap_accept} ${var_swap_attempt}" screen no title "step time temp vol swap_accept swap_attempt" file thermo2nd.txt
 
 thermo 10 #0
-thermo_style custom step varTemp pe press vol v_swap_accept v_swap_attempt
+thermo_style custom step temp pe press vol v_swap_accept v_swap_attempt
 thermo_modify norm no
 
