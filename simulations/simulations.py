@@ -38,7 +38,7 @@ if __name__ == '__main__':
                     1:'/../postprocess/NiCoCrNatom1K',
                     2:'/CuZrNatom32KT300Tdot1E-1Sheared',
                     4:'/junk',
-                    3:'glass/glassCo5Cr2Fe40Mn27Ni26',
+                    3:'/glass/glassCo5Cr2Fe40Mn27Ni26',
                 }[3] #--- must be different than sourcePath
         #
     sourceFiles = { 0:False,
