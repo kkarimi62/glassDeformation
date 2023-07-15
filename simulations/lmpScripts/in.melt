@@ -52,18 +52,18 @@ run		${nRunMelting}
 unfix	fix_melt
 
 #--- final equilibration
-#fix		fix_finalEq	all npt temp ${Tfinal} ${Tfinal} ${damp_t} iso ${Pinit} ${Pinit} ${damp_p}  
-#run 	${nRunEquilibrate}
-#unfix	fix_finalEq
+fix		fix_finalEq	all npt temp ${Tfinal} ${Tfinal} ${damp_t} iso ${Pinit} ${Pinit} ${damp_p}  
+run 	${nRunEquilibrate}
+unfix	fix_finalEq
 
 #--- quench
-#fix		fix_quench	all npt temp ${Tfinal} ${Tinit} ${damp_t} iso ${Pinit} ${Pinit} ${damp_p}  
-#run		${nRunQuench}
-#unfix	fix_quench
+fix		fix_quench	all npt temp ${Tfinal} ${Tinit} ${damp_t} iso ${Pinit} ${Pinit} ${damp_p}  
+run		${nRunQuench}
+unfix	fix_quench
 
 #--- final equilibration
-#fix		fix_finalEq	all npt temp ${Tinit} ${Tinit} ${damp_t} iso ${Pinit} ${Pinit} ${damp_p}  
-#run 	${nRunEquilibrate}
+fix		fix_finalEq	all npt temp ${Tinit} ${Tinit} ${damp_t} iso ${Pinit} ${Pinit} ${damp_p}  
+run 	${nRunEquilibrate}
 
 restart		${nevery}	quench.restart
 

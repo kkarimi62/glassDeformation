@@ -31,24 +31,25 @@ if __name__ == '__main__':
                 1:'CuZrNatom32KT300Tdot1E-3Sheared',
                 2:'CuZrNatom32KT300Tdot1E-1Elasticity',
                 4:'ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0',
-                5:'annealing4th',
+                5:'annealing5th',
                }[5]
     sourcePath = os.getcwd() +\
                 {	
                     1:'/../postprocess/NiCoCrNatom1K',
                     2:'/CuZrNatom32KT300Tdot1E-1Sheared',
-                    3:'/../glassCo5Cr2Fe40Mn27Ni26',
                     4:'/junk',
-                }[4] #--- must be different than sourcePath
+                    3:'/glassCo5Cr2Fe40Mn27Ni26',
+                }[3] #--- must be different than sourcePath
         #
     sourceFiles = { 0:False,
                     1:['Equilibrated_300.dat'],
                     2:['data.txt','ScriptGroup.txt'],
-                    3:['data.0.txt','Co5Cr2Fe40Mn27Ni26_glass.dump','Co5Cr2Fe40Mn27Ni26.txt'], 
                     4:['data_minimized.txt'],
                     5:['data_init.txt','ScriptGroup.0.txt'], #--- only one partition! for multiple ones, use 'submit.py'
                     6:['data.0.txt','dumpSheared.xyz'], 
-                 }[0] #--- to be copied from the above directory
+                    3:['data.0.txt','Co5Cr2Fe40Mn27Ni26_glass.dump','Co5Cr2Fe40Mn27Ni26.txt'], 
+                    7:['Co5Cr2Fe40Mn27Ni26_glass.data'], 
+                 }[7] #--- to be copied from the above directory
     #
     EXEC_DIR = '/home/kamran.karimi1/Project/git/lammps2nd/lammps/src' #--- path for executable file
     #
@@ -56,7 +57,7 @@ if __name__ == '__main__':
     #
     SCRPT_DIR = os.getcwd()+'/lmpScripts' #/'+{1:'cuzr'}[1]
     #
-    SCRATCH = True
+    SCRATCH = False
     OUT_PATH = '.'
     if SCRATCH:
         OUT_PATH = '/scratch/${SLURM_JOB_ID}'
@@ -90,7 +91,7 @@ if __name__ == '__main__':
                 10:' -var T 300.0 -var teq	1.0	-var up -1.0e-03 -var nevery 50 -var ParseData 1 -var DataFile data.0.txt -var DumpFile dumpUp_',
                 101:' -var T 300.0 -var teq	1.0	-var up 1.0e-03 -var nevery 50 -var ParseData 1 -var DataFile data.0.txt -var DumpFile dumpDown_',
                 11:' -var T 300.0 -var A 0.1 -var Tp 10.0 -var nevery 100 -var DumpFile shearOscillation.xyz -var ParseData 1 -var DataFile data.0.txt', #--- temp(T), amplitude in distance (A), period (Tp)
-                13:' -var buff 0.0 -var buffy 0.0 -var T 300 -var swap_every 1 -var swap_atoms 1 -var rn %s -var dump_every 10 -var ParseData 1 -var DataFile data_quenched.dat -var DumpFile traj.dump'%np.random.randint(1001,100000),
+                13:' -var buff 0.0 -var buffy 0.0 -var T 300 -var swap_every 1 -var swap_atoms 1 -var rn %s -var dump_every 10 -var ParseData 1 -var DataFile Co5Cr2Fe40Mn27Ni26_glass.data -var DumpFile traj.dump -var thermoFile thermo_swap.txt'%np.random.randint(1001,100000),
                 'p0':' swapped_600.dat 10.0 %s'%(os.getcwd()+'/../postprocess'),
                 'p1':' swapped_600.dat ElasticConst.txt DumpFileModu.xyz %s'%(os.getcwd()+'/../postprocess'),
                 'p2':' %s 3.52 40.0 20.0 40.0 data.txt'%(os.getcwd()+'/../postprocess'),
@@ -101,7 +102,8 @@ if __name__ == '__main__':
                 3:[11], #--- elastic moduli at finite T: laos
                 1:[5,7,0,6], #--- minimize, thermalize,melt & quench, shear
                 0:[5,7,0,13], #--- minimize, thermalize,melt & quench, anneal
-              }[0]
+                4:[13], #--- anneal
+              }[4]
     Pipeline = list(map(lambda x:LmpScript[x],indices))
     Variables = list(map(lambda x:Variable[x], indices))
     EXEC = list(map(lambda x:'lmp' if type(x) == type(0) else 'py', indices))	
