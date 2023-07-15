@@ -17,7 +17,7 @@ variable varExy	 equal	v_varXy/v_varLy
 variable varEzz	 equal	0.0 #v_varTime*${GammaDot}		
 variable ntherm  equal	100 #ceil(${Nstep}/${nthermo})
 variable varn	 equal	v_ntherm
-fix extra all print ${varn} "${varStep} ${varTime} ${varEzz} ${varTemp} ${varPe} ${varPxx} ${varPyy} ${varSzz} ${varVol}" screen no title "step time ezz temp pe pxx pyy szz vol" file thermo.txt
+fix extra all print ${varn} "${varStep} ${varTime} ${varEzz} ${varTemp} ${varPe} ${varPxx} ${varPyy} ${varSzz} ${varVol}" screen no title "step time ezz temp pe pxx pyy szz vol" file ${thermoFile} #thermo.txt
 
 thermo 100
 thermo_style custom step temp pe press vol 
