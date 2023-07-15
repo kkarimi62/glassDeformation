@@ -22,16 +22,16 @@ if __name__ == '__main__':
     import os
     import numpy as np
 
-    runs	 = [0] #,1,2]
+    runs	 = [0,1,2]
     #
-    nThreads = 8 #2
+    nThreads = 16 #8 #2
     nNode	 = 1
     #
     jobname  = {
                 1:'CuZrNatom32KT300Tdot1E-3Sheared',
                 2:'CuZrNatom32KT300Tdot1E-1Elasticity',
                 4:'ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0',
-                5:'annealing5th',
+                5:'annealing6th',
                }[5]
     sourcePath = os.getcwd() +\
                 {	
@@ -111,7 +111,7 @@ if __name__ == '__main__':
     DeleteExistingFolder = True
     #
     EXEC_lmp = ['lmp_mpi','lmp_serial'][0]
-    durtn = ['96:59:59','00:59:59'][1]
+    durtn = ['96:59:59','00:59:59'][0]
     mem = '8gb'
     partition = ['gpu-v100','parallel','cpu2019','single'][1]
     #---

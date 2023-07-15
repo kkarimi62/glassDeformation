@@ -15,7 +15,7 @@ variable varVol	 equal	vol
 #variable varSzz	 equal	-v_varPzz*${cfac}
 #variable varExy	 equal	v_varXy/v_varLy		
 #variable varEzz	 equal	v_varTime*${GammaDot}		
-variable ntherm  equal	100 #ceil(${Nstep}/${nthermo})
+variable ntherm  equal	10 #ceil(${Nstep}/${nthermo})
 variable varn	 equal	v_ntherm
 variable       swap_attempt equal f_4[1]
 variable       swap_accept  equal f_4[2]
