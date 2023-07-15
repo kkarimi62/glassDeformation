@@ -24,14 +24,14 @@ if __name__ == '__main__':
 
     runs	 = [0] #,1,2]
     #
-    nThreads = 2
+    nThreads = 8 #2
     nNode	 = 1
     #
     jobname  = {
                 1:'CuZrNatom32KT300Tdot1E-3Sheared',
                 2:'CuZrNatom32KT300Tdot1E-1Elasticity',
                 4:'ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0',
-                5:'annealing2nd',
+                5:'annealing3rd',
                }[5]
     sourcePath = os.getcwd() +\
                 {	
@@ -82,7 +82,7 @@ if __name__ == '__main__':
     Variable = {
                 0:'  -var ParseData 1 -var DataFile equilibrated.dat -var tstart 300.0 -var tstop 2000.0 -var TdotMelt 10.0 -var TdotQuench 1.0 -var Pinit 1.0132 -var nevery 10000  -var DumpFile dumpInit.xyz -var WriteData data_quenched.dat -var thermoFile thermo_quenched.txt',
                 4:' -var T 600 -var t_sw 20.0 -var DataFile Equilibrated_600.dat -var nevery 1000 -var ParseData 1 -var WriteData swapped_600.dat', 
-                5:' -var buff 0.0 -var nevery 1000 -var ParseData 0 -var natoms 1000 -var ntype 2 -var cutoff 3.54  -var DumpFile dumpMin.xyz -var WriteData data_minimized.dat -var seed0 %s -var seed1 %s -var seed2 %s -var seed3 %s'%tuple(np.random.randint(1001,9999,size=4)), 
+                5:' -var buff 0.0 -var nevery 1000 -var ParseData 0 -var natoms 10000 -var ntype 2 -var cutoff 3.54  -var DumpFile dumpMin.xyz -var WriteData data_minimized.dat -var seed0 %s -var seed1 %s -var seed2 %s -var seed3 %s'%tuple(np.random.randint(1001,9999,size=4)), 
                 6:' -var buff 0.0 -var T 300.0 -var GammaXY 0.2 -var GammaDot 1.0e-04 -var ndump 100 -var ParseData 1 -var DataFile data_init.txt -var DumpFile dumpSheared.xyz',
                 7:' -var buff 0.0 -var T 300 -var P 0.0 -var nevery 1000 -var ParseData 1 -var DataFile data_minimized.dat -var DumpFile dumpThermalized.xyz -var WriteData equilibrated.dat -var thermoFile thermo_thermalized.txt',
                 8:' -var buff 3.0 -var T 0.1 -var sigm 1.5 -var sigmdt 0.01 -var ParseData 1 -var DataFile Equilibrated_300.dat -var DumpFile dumpSheared.xyz',
@@ -109,7 +109,7 @@ if __name__ == '__main__':
     DeleteExistingFolder = True
     #
     EXEC_lmp = ['lmp_mpi','lmp_serial'][0]
-    durtn = ['96:59:59','23:59:59'][1]
+    durtn = ['96:59:59','00:59:59'][1]
     mem = '8gb'
     partition = ['gpu-v100','parallel','cpu2019','single'][1]
     #---
