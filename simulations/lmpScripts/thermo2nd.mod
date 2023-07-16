@@ -18,8 +18,9 @@ variable varVol	 equal	vol
 variable ntherm  equal	10 #ceil(${Nstep}/${nthermo})
 variable varn	 equal	v_ntherm
 
-
+#-----------------
 #--- fix swap
+#-----------------
 #if "${varStep} == 0" then &
 #	"variable    swap_attempt equal 0" &
 #	"variable    swap_accept  equal 0"
@@ -39,7 +40,6 @@ variable varn	 equal	v_ntherm
 #next		itype
 #jump        ${INC}/thermo2nd.mod		outer
 #label       break
-
 variable    swap_attempt equal f_2[1]+f_3[1]+f_4[1]+f_5[1]+f_8[1]+f_9[1]+f_10[1]+f_14[1]+f_15[1]+f_20[1]
 variable    swap_accept  equal f_2[2]+f_3[2]+f_4[2]+f_5[2]+f_8[2]+f_9[2]+f_10[2]+f_14[2]+f_15[2]+f_20[2]
 
@@ -55,7 +55,7 @@ variable 	   var_swap_accept  equal v_swap_accept
 
 fix extra all print ${varn} "${varStep} ${varTime} ${varTemp} ${varVol} ${var_swap_accept} ${var_swap_attempt}" screen no title "step time temp vol swap_accept swap_attempt" file ${thermoFile}
 
-thermo 1 #100
+thermo 100
 thermo_style custom step temp pe press vol v_swap_accept v_swap_attempt
 thermo_modify norm no
 
