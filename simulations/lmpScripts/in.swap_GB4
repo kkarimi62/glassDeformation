@@ -25,21 +25,22 @@ fix              f1  all npt temp ${T} ${T} ${damp_t} iso 0.0 0.0 ${damp_p} #z 0
 
 
 #--- fix swap
-variable      ran1 equal round(random(0,999999,10))
-
-#label       loop
-#variable itype loop ${ntype}
-variable itype eq 1
+variable 	stop	equal	${ntype}-1
+#
+label       outer
+variable 	itype 	loop 	${stop}
 label       inner
-variable start equal ${itype}+1
-variable jtype loop ${start} ${ntype}
-fix           4 all atom/swap ${swap_every} ${swap_atoms} ${ran1} ${T} ke no types ${itype} ${jtype} 
-next jtype
-jump        in.swap_GB4 inner
+variable 	start	equal	${itype}+1
+variable	jtype	loop	${start} ${ntype}
+variable    ran  	equal round(random(0,999999,10))
+variable	count	equal   (${itype}-1)*${ntype}+${jtype}	
+fix			${count} 		all		atom/swap	${swap_every} ${swap_atoms} ${ran} ${T} ke no types ${itype} ${jtype} 
+next 		jtype
+jump        in.swap_GB4		inner
 label       break
-#next itype
-#jump        in.swap_GB4 loop
-#label       break
+next		itype
+jump        in.swap_GB4		outer
+label       break
 
 #-----------------------------
 #--- compute & dump variables
