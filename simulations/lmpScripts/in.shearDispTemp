@@ -30,6 +30,9 @@ fix		FixShear all deform 1 xy erate ${GammaDot} units box
 #--- set discretization time 
 timestep	${dt}
 
+#--- thermo
+include ${INC}/thermo-shear.mod
+
 run	${Nstep}
 
 write_data                ${WriteData} 
