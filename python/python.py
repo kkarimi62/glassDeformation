@@ -53,6 +53,7 @@ if __name__ == '__main__':
         3:'junk.ipynb',
         }
     keyno = 1
+    convert_to_py = True
 #---
 #---
     PYFIL = PYFILdic[ keyno ] 
