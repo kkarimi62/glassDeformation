@@ -31,3 +31,6 @@ fix		FixShear all deform 1 xy erate ${GammaDot} units box
 timestep	${dt}
 
 run	${Nstep}
+
+write_data                ${WriteData} 
+

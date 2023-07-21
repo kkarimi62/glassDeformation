@@ -16,7 +16,7 @@ include ${INC}/thermo.mod
 #--- thermalize two partial dislocations
 
 # -------------------------------------- General Variables --------------------------------------#
-variable                  t_eq      equal     100.0*${damp_t}         # Equlibration time
+variable                  t_eq      equal     10.0*${damp_t}         # Equlibration time
 variable 				  Nstep  	equal	floor(${t_eq}/${dt}) #--- timesteps
 
 
@@ -31,10 +31,8 @@ variable p0 equal ${tmp}
 
 velocity                  all       create     $T     97364  mom    yes  rot  yes  dist  gaussian  # Dynamics starts
  
-#thermo                    100
-#thermo_style              custom    step temp etotal pe press vol
-fix                      f1        all        npt temp   $T  $T  ${damp_t}  iso ${p0} $P ${damp_p} drag	1.0 ##fixedpoint 0.0 0.0 0.0
-#fix 1 all npt temp $T $T $(dt*100) x 0 0 $(dt*1000) z 0 0 $(dt*1000)
+#fix                      f1        all        npt temp   $T  $T  ${damp_t}  iso ${p0} $P ${damp_p} drag	1.0 ##fixedpoint 0.0 0.0 0.0
+fix                      f1        all        nvt temp   $T  $T  ${damp_t} 
 
 #-----------------------------
 #--- compute & dump variables

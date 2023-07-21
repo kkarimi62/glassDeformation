@@ -31,25 +31,25 @@ if __name__ == '__main__':
                 1:'CuZrNatom32KT300Tdot1E-3Sheared',
                 2:'CuZrNatom32KT300Tdot1E-1Elasticity',
                 4:'ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0',
-                5:'annealing/glassCo5Cr2Fe40Mn27Ni26',
+                5:'shear/glassCo5Cr2Fe40Mn27Ni26',
                }[5]
     sourcePath = os.getcwd() +\
-                {	
+                {	0:'/junk',
                     1:'/../postprocess/NiCoCrNatom1K',
                     2:'/CuZrNatom32KT300Tdot1E-1Sheared',
-                    4:'/junk',
                     3:'/glass/glassCo5Cr2Fe40Mn27Ni26',
-                }[3] #--- must be different than sourcePath
+                    5:'/annealing/glassCo5Cr2Fe40Mn27Ni26',
+                }[5] #--- must be different than sourcePath
         #
     sourceFiles = { 0:False,
                     1:['Equilibrated_300.dat'],
                     2:['data.txt','ScriptGroup.txt'],
                     4:['data_minimized.txt'],
-                    5:['data_init.txt','ScriptGroup.0.txt'], #--- only one partition! for multiple ones, use 'submit.py'
                     6:['data.0.txt','dumpSheared.xyz'], 
                     3:['data.0.txt','Co5Cr2Fe40Mn27Ni26_glass.dump','Co5Cr2Fe40Mn27Ni26.txt'], 
                     7:['Co5Cr2Fe40Mn27Ni26_glass.data'], 
-                 }[7] #--- to be copied from the above directory
+                    5:['swapped.dat'], #--- only one partition! for multiple ones, use 'submit.py'
+                 }[5] #--- to be copied from the above directory
     #
     EXEC_DIR = '/home/kamran.karimi1/Project/git/lammps2nd/lammps/src' #--- path for executable file
     #
@@ -84,14 +84,14 @@ if __name__ == '__main__':
                 0:'  -var ParseData 1 -var DataFile equilibrated.dat -var tstart 300.0 -var tstop 2000.0 -var TdotMelt 10.0 -var TdotQuench 1.0 -var Pinit 1.0132 -var nevery 10000  -var DumpFile dumpInit.xyz -var WriteData data_quenched.dat -var thermoFile thermo_quenched.txt',
                 4:' -var T 600 -var t_sw 20.0 -var DataFile Equilibrated_600.dat -var nevery 1000 -var ParseData 1 -var WriteData swapped_600.dat', 
                 5:' -var buff 0.0 -var nevery 1000 -var ParseData 0 -var natoms 10000 -var ntype 2 -var cutoff 3.54  -var DumpFile dumpMin.xyz -var WriteData data_minimized.dat -var seed0 %s -var seed1 %s -var seed2 %s -var seed3 %s'%tuple(np.random.randint(1001,9999,size=4)), 
-                6:' -var buff 0.0 -var T 300.0 -var GammaXY 0.2 -var GammaDot 1.0e-04 -var ndump 100 -var ParseData 1 -var DataFile data_init.txt -var DumpFile dumpSheared.xyz',
-                7:' -var buff 0.0 -var T 300 -var P 0.0 -var nevery 1000 -var ParseData 1 -var DataFile data_minimized.dat -var DumpFile dumpThermalized.xyz -var WriteData equilibrated.dat -var thermoFile thermo_thermalized.txt',
+                6:' -var buff 0.0 -var T 300.0 -var GammaXY 0.2 -var GammaDot 1.0e-04 -var ndump 100 -var ParseData 1 -var DataFile equilibrated.dat -var DumpFile dumpSheared.xyz -var WriteData sheared.dat',
+                7:' -var buff 0.0 -var T 300 -var P 0.0 -var nevery 1000 -var ParseData 1 -var DataFile swapped.dat -var DumpFile dumpThermalized.xyz -var WriteData equilibrated.dat -var thermoFile thermo_thermalized.txt',
                 8:' -var buff 3.0 -var T 0.1 -var sigm 1.5 -var sigmdt 0.01 -var ParseData 1 -var DataFile Equilibrated_300.dat -var DumpFile dumpSheared.xyz',
                 9:' -var natoms 1000 -var cutoff 3.52 -var ParseData 1',
                 10:' -var T 300.0 -var teq	1.0	-var up -1.0e-03 -var nevery 50 -var ParseData 1 -var DataFile data.0.txt -var DumpFile dumpUp_',
                 101:' -var T 300.0 -var teq	1.0	-var up 1.0e-03 -var nevery 50 -var ParseData 1 -var DataFile data.0.txt -var DumpFile dumpDown_',
                 11:' -var T 300.0 -var A 0.1 -var Tp 10.0 -var nevery 100 -var DumpFile shearOscillation.xyz -var ParseData 1 -var DataFile data.0.txt', #--- temp(T), amplitude in distance (A), period (Tp)
-                13:' -var buff 0.0 -var buffy 0.0 -var T 300 -var swap_every 1 -var swap_atoms 1 -var rn %s -var dump_every 100 -var ParseData 1 -var DataFile Co5Cr2Fe40Mn27Ni26_glass.data -var DumpFile traj.dump -var thermoFile thermo_swap.txt -var ntype 5'%np.random.randint(1001,100000),
+                13:' -var buff 0.0 -var buffy 0.0 -var T 300 -var swap_every 1 -var swap_atoms 1 -var rn %s -var dump_every 100 -var ParseData 1 -var DataFile Co5Cr2Fe40Mn27Ni26_glass.data -var DumpFile traj.dump -var thermoFile thermo_swap.txt -var ntype 5 -var WriteData swapped.dat'%np.random.randint(1001,100000),
                 'p0':' swapped_600.dat 10.0 %s'%(os.getcwd()+'/../postprocess'),
                 'p1':' swapped_600.dat ElasticConst.txt DumpFileModu.xyz %s'%(os.getcwd()+'/../postprocess'),
                 'p2':' %s 3.52 40.0 20.0 40.0 data.txt'%(os.getcwd()+'/../postprocess'),
@@ -103,7 +103,8 @@ if __name__ == '__main__':
                 1:[5,7,0,6], #--- minimize, thermalize,melt & quench, shear
                 0:[5,7,0,13], #--- minimize, thermalize,melt & quench, anneal
                 4:[13], #--- anneal
-              }[4]
+                5:[7,6], #--- shear
+              }[5]
     Pipeline = list(map(lambda x:LmpScript[x],indices))
     Variables = list(map(lambda x:Variable[x], indices))
     EXEC = list(map(lambda x:'lmp' if type(x) == type(0) else 'py', indices))	

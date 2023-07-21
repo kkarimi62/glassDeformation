@@ -57,3 +57,4 @@ include ${INC}/thermo2nd.mod
 
 run                       ${Nstep}
 
+write_data                ${WriteData} 
