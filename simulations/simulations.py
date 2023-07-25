@@ -40,7 +40,6 @@ if __name__ == '__main__':
                     2:'/CuZrNatom32KT300Tdot1E-1Sheared',
                     3:'/glass/glassCo5Cr2Fe40Mn27Ni26',
                     5:'/annealing/glassCo5Cr2Fe40Mn27Ni26',
-                    6:'/annealingMultiAge/glassCo5Cr2Fe40Mn27Ni26',
                 }[5] #--- must be different than sourcePath
         #
     sourceFiles = { 0:False,
