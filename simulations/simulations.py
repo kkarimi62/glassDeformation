@@ -31,7 +31,7 @@ if __name__ == '__main__':
                 1:'CuZrNatom32KT300Tdot1E-3Sheared',
                 2:'CuZrNatom32KT300Tdot1E-1Elasticity',
                 4:'ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0',
-                5:'shear/glassCo5Cr2Fe40Mn27Ni26',
+                5:'shear/quenched/glassCo5Cr2Fe40Mn27Ni26',
                }[5]
     sourcePath = os.getcwd() +\
                 {	0:'/junk',
@@ -39,7 +39,7 @@ if __name__ == '__main__':
                     2:'/CuZrNatom32KT300Tdot1E-1Sheared',
                     3:'/glass/glassCo5Cr2Fe40Mn27Ni26',
                     5:'/annealing/glassCo5Cr2Fe40Mn27Ni26',
-                }[5] #--- must be different than sourcePath
+                }[3] #--- must be different than sourcePath
         #
     sourceFiles = { 0:False,
                     1:['Equilibrated_300.dat'],
@@ -49,7 +49,7 @@ if __name__ == '__main__':
                     3:['data.0.txt','Co5Cr2Fe40Mn27Ni26_glass.dump','Co5Cr2Fe40Mn27Ni26.txt'], 
                     7:['Co5Cr2Fe40Mn27Ni26_glass.data'], 
                     5:['swapped.dat'], #--- only one partition! for multiple ones, use 'submit.py'
-                 }[5] #--- to be copied from the above directory
+                 }[7] #--- to be copied from the above directory
     #
     EXEC_DIR = '/home/kamran.karimi1/Project/git/lammps2nd/lammps/src' #--- path for executable file
     #
@@ -85,7 +85,7 @@ if __name__ == '__main__':
                 4:' -var T 600 -var t_sw 20.0 -var DataFile Equilibrated_600.dat -var nevery 1000 -var ParseData 1 -var WriteData swapped_600.dat', 
                 5:' -var buff 0.0 -var nevery 1000 -var ParseData 0 -var natoms 10000 -var ntype 2 -var cutoff 3.54  -var DumpFile dumpMin.xyz -var WriteData data_minimized.dat -var seed0 %s -var seed1 %s -var seed2 %s -var seed3 %s'%tuple(np.random.randint(1001,9999,size=4)), 
                 6:' -var buff 0.0 -var T 300.0 -var GammaXY 0.2 -var GammaDot 1.0e-04 -var ndump 100 -var ParseData 1 -var DataFile equilibrated.dat -var DumpFile dumpSheared.xyz -var WriteData sheared.dat -var thermoFile thermo-shear.txt',
-                7:' -var buff 0.0 -var T 300 -var P 0.0 -var nevery 1000 -var ParseData 1 -var DataFile swapped.dat -var DumpFile dumpThermalized.xyz -var WriteData equilibrated.dat -var thermoFile thermo_thermalized.txt',
+                7:' -var buff 0.0 -var T 300 -var P 0.0 -var nevery 1000 -var ParseData 1 -var DataFile Co5Cr2Fe40Mn27Ni26_glass.dat -var DumpFile dumpThermalized.xyz -var WriteData equilibrated.dat -var thermoFile thermo_thermalized.txt',
                 8:' -var buff 3.0 -var T 0.1 -var sigm 1.5 -var sigmdt 0.01 -var ParseData 1 -var DataFile Equilibrated_300.dat -var DumpFile dumpSheared.xyz',
                 9:' -var natoms 1000 -var cutoff 3.52 -var ParseData 1',
                 10:' -var T 300.0 -var teq	1.0	-var up -1.0e-03 -var nevery 50 -var ParseData 1 -var DataFile data.0.txt -var DumpFile dumpUp_',
@@ -139,9 +139,10 @@ if __name__ == '__main__':
         #---
         makeOAR( path, 1, nThreads, durtn) # --- make oar script
         os.system( 'chmod +x oarScript.sh; mv oarScript.sh %s' % ( writPath) ) # --- create folder & mv oar scrip & cp executable
+        jobname0 = jobname.split('/')[0] #--- remove slash
         os.system( 'sbatch --partition=%s --mem=%s --time=%s --job-name %s.%s --output %s.%s.out --error %s.%s.err \
                             --chdir %s -c %s -n %s %s/oarScript.sh >> jobID.txt'\
-                           % ( partition, mem, durtn, jobname[:4], counter, jobname[:4], counter, jobname[:4], counter \
+                           % ( partition, mem, durtn, jobname0, counter, jobname0, counter, jobname0, counter \
                                , writPath, nThreads, nNode, writPath ) ) # --- runs oarScript.sh! 
         irun += 1
 
