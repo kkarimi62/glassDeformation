@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     runs	 = [0,1,2]
     #
-    nThreads = 1 #16 #8 #2
+    nThreads = 16 #8 #2
     nNode	 = 1
     #
     jobname  = {
@@ -32,9 +32,8 @@ if __name__ == '__main__':
                 2:'CuZrNatom32KT300Tdot1E-1Elasticity',
                 4:'ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0',
                 5:'annealing/glassCo5Cr2Fe40Mn27Ni26',
-                6:'annealingMultiAge/glassCo5Cr2Fe40Mn27Ni26/age0',
                 7:'shear/glassCo5Cr2Fe40Mn27Ni26/age0',
-               }[6]
+               }[7]
     sourcePath = os.getcwd() +\
                 {	0:'/junk',
                     1:'/../postprocess/NiCoCrNatom1K',
@@ -90,7 +89,7 @@ if __name__ == '__main__':
                 4:' -var T 600 -var t_sw 20.0 -var DataFile Equilibrated_600.dat -var nevery 1000 -var ParseData 1 -var WriteData swapped_600.dat', 
                 5:' -var buff 0.0 -var nevery 1000 -var ParseData 0 -var natoms 10000 -var ntype 2 -var cutoff 3.54  -var DumpFile dumpMin.xyz -var WriteData data_minimized.dat -var seed0 %s -var seed1 %s -var seed2 %s -var seed3 %s'%tuple(np.random.randint(1001,9999,size=4)), 
                 6:' -var buff 0.0 -var T 300.0 -var GammaXY 0.2 -var GammaDot 1.0e-04 -var ndump 100 -var ParseData 1 -var DataFile equilibrated.dat -var DumpFile dumpSheared.xyz -var WriteData sheared.dat -var thermoFile thermo-shear.txt',
-                7:' -var buff 0.0 -var T 300 -var P 0.0 -var nevery 1000 -var ParseData 1 -var DataFile data_age0.dat -var DumpFile dumpThermalized.xyz -var WriteData equilibrated.dat -var thermoFile thermo_thermalized.txt',
+                7:' -var buff 0.0 -var T 300 -var P 0.0 -var nevery 1000 -var ParseData 1 -var DataFile data_aged.dat -var DumpFile dumpThermalized.xyz -var WriteData equilibrated.dat -var thermoFile thermo_thermalized.txt',
                 8:' -var buff 3.0 -var T 0.1 -var sigm 1.5 -var sigmdt 0.01 -var ParseData 1 -var DataFile Equilibrated_300.dat -var DumpFile dumpSheared.xyz',
                 9:' -var natoms 1000 -var cutoff 3.52 -var ParseData 1',
                 10:' -var T 300.0 -var teq	1.0	-var up -1.0e-03 -var nevery 50 -var ParseData 1 -var DataFile data.0.txt -var DumpFile dumpUp_',
@@ -100,7 +99,7 @@ if __name__ == '__main__':
                 'p0':' swapped_600.dat 10.0 %s'%(os.getcwd()+'/../postprocess'),
                 'p1':' swapped_600.dat ElasticConst.txt DumpFileModu.xyz %s'%(os.getcwd()+'/../postprocess'),
                 'p2':' %s 3.52 40.0 20.0 40.0 data.txt'%(os.getcwd()+'/../postprocess'),
-                'p3':' traj.dump 100 0', #dump file, nevery, file index
+                'p3':' traj.dump 100 0 data_aged.dat', #dump file, nevery, file index
                 } 
     #--- different scripts in a pipeline
     indices = {
@@ -110,7 +109,7 @@ if __name__ == '__main__':
                 0:[5,7,0,13], #--- minimize, thermalize,melt & quench, anneal
                 5:[7,6], #--- shear
                 4:[13], #--- anneal
-                6:['p3'], #--- create data files based on glass age
+                6:['p3',7,6], #--- create data files based on glass age, thermalize, shear
               }[6]
     Pipeline = list(map(lambda x:LmpScript[x],indices))
     Variables = list(map(lambda x:Variable[x], indices))

@@ -32,6 +32,6 @@ count = 0
 for key in atomi:
     if count == int(sys.argv[3]):
         wd = lp.WriteDataFile( atomi[key], boxi[key], mass )
-        wd.Write('data_age%s.dat'%count)
+        wd.Write(sys.argv[4])
         break
     count += 1
