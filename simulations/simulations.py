@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     runs	 = [0,1,2]
     #
-    nThreads = 16 #8 #2
+    nThreads = 1 #16 #8 #2
     nNode	 = 1
     #
     jobname  = {
@@ -32,9 +32,9 @@ if __name__ == '__main__':
                 2:'CuZrNatom32KT300Tdot1E-1Elasticity',
                 4:'ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0',
                 5:'annealing/glassCo5Cr2Fe40Mn27Ni26',
-                6:'annealingMultiAge/glassCo5Cr2Fe40Mn27Ni26',
+                6:'annealingMultiAge/glassCo5Cr2Fe40Mn27Ni26/age0',
                 7:'shear/glassCo5Cr2Fe40Mn27Ni26/age0',
-               }[7]
+               }[6]
     sourcePath = os.getcwd() +\
                 {	0:'/junk',
                     1:'/../postprocess/NiCoCrNatom1K',
@@ -42,7 +42,7 @@ if __name__ == '__main__':
                     3:'/glass/glassCo5Cr2Fe40Mn27Ni26',
                     5:'/annealing/glassCo5Cr2Fe40Mn27Ni26',
                     6:'/annealingMultiAge/glassCo5Cr2Fe40Mn27Ni26',
-                }[6] #--- must be different than sourcePath
+                }[5] #--- must be different than sourcePath
         #
     sourceFiles = { 0:False,
                     1:['Equilibrated_300.dat'],
@@ -53,7 +53,7 @@ if __name__ == '__main__':
                     7:['Co5Cr2Fe40Mn27Ni26_glass.data'],
                     6:['traj.dump'],
                     8:['data_age0.dat'], 
-                 }[8] #--- to be copied from the above directory
+                 }[6] #--- to be copied from the above directory
     #
     EXEC_DIR = '/home/kamran.karimi1/Project/git/lammps2nd/lammps/src' #--- path for executable file
     #
@@ -100,7 +100,7 @@ if __name__ == '__main__':
                 'p0':' swapped_600.dat 10.0 %s'%(os.getcwd()+'/../postprocess'),
                 'p1':' swapped_600.dat ElasticConst.txt DumpFileModu.xyz %s'%(os.getcwd()+'/../postprocess'),
                 'p2':' %s 3.52 40.0 20.0 40.0 data.txt'%(os.getcwd()+'/../postprocess'),
-                'p3':' traj.dump 100',
+                'p3':' traj.dump 100 0', #dump file, nevery, file index
                 } 
     #--- different scripts in a pipeline
     indices = {
@@ -110,8 +110,8 @@ if __name__ == '__main__':
                 0:[5,7,0,13], #--- minimize, thermalize,melt & quench, anneal
                 5:[7,6], #--- shear
                 4:[13], #--- anneal
-                6:['p3'], #--- data files based on glass age
-              }[5]
+                6:['p3'], #--- create data files based on glass age
+              }[6]
     Pipeline = list(map(lambda x:LmpScript[x],indices))
     Variables = list(map(lambda x:Variable[x], indices))
     EXEC = list(map(lambda x:'lmp' if type(x) == type(0) else 'py', indices))	

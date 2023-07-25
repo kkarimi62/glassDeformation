@@ -30,6 +30,8 @@ atomi, boxi = GetAtoms( input_file, nevery = int(sys.argv[2]) ) #--- change it t
 #---
 count = 0
 for key in atomi:
-    wd = lp.WriteDataFile( atomi[key], boxi[key], mass )
-    wd.Write('data_age%s.dat'%count)
+    if count == int(sys.argv[3]):
+        wd = lp.WriteDataFile( atomi[key], boxi[key], mass )
+        wd.Write('data_age%s.dat'%count)
+        break
     count += 1
