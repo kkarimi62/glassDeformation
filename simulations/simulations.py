@@ -33,24 +33,26 @@ if __name__ == '__main__':
                 4:'ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0',
                 5:'annealing/glassCo5Cr2Fe40Mn27Ni26',
                 6:'annealingMultiAge/glassCo5Cr2Fe40Mn27Ni26',
-               }[6]
+                7:'shear/glassCo5Cr2Fe40Mn27Ni26/t0',
+               }[7]
     sourcePath = os.getcwd() +\
                 {	0:'/junk',
                     1:'/../postprocess/NiCoCrNatom1K',
                     2:'/CuZrNatom32KT300Tdot1E-1Sheared',
                     3:'/glass/glassCo5Cr2Fe40Mn27Ni26',
                     5:'/annealing/glassCo5Cr2Fe40Mn27Ni26',
-                }[5] #--- must be different than sourcePath
+                    6:'/annealingMultiAge/glassCo5Cr2Fe40Mn27Ni26',
+                }[6] #--- must be different than sourcePath
         #
     sourceFiles = { 0:False,
                     1:['Equilibrated_300.dat'],
                     2:['data.txt','ScriptGroup.txt'],
                     4:['data_minimized.txt'],
-                    6:['data.0.txt','dumpSheared.xyz'], 
                     3:['data.0.txt','Co5Cr2Fe40Mn27Ni26_glass.dump','Co5Cr2Fe40Mn27Ni26.txt'], 
                     5:['swapped.dat'], #--- only one partition! for multiple ones, use 'submit.py'
                     7:['Co5Cr2Fe40Mn27Ni26_glass.data'],
-                    8:['traj.dump'],
+                    6:['traj.dump'],
+                    8:['data_age0.dat'], 
                  }[8] #--- to be copied from the above directory
     #
     EXEC_DIR = '/home/kamran.karimi1/Project/git/lammps2nd/lammps/src' #--- path for executable file
@@ -88,7 +90,7 @@ if __name__ == '__main__':
                 4:' -var T 600 -var t_sw 20.0 -var DataFile Equilibrated_600.dat -var nevery 1000 -var ParseData 1 -var WriteData swapped_600.dat', 
                 5:' -var buff 0.0 -var nevery 1000 -var ParseData 0 -var natoms 10000 -var ntype 2 -var cutoff 3.54  -var DumpFile dumpMin.xyz -var WriteData data_minimized.dat -var seed0 %s -var seed1 %s -var seed2 %s -var seed3 %s'%tuple(np.random.randint(1001,9999,size=4)), 
                 6:' -var buff 0.0 -var T 300.0 -var GammaXY 0.2 -var GammaDot 1.0e-04 -var ndump 100 -var ParseData 1 -var DataFile equilibrated.dat -var DumpFile dumpSheared.xyz -var WriteData sheared.dat -var thermoFile thermo-shear.txt',
-                7:' -var buff 0.0 -var T 300 -var P 0.0 -var nevery 1000 -var ParseData 1 -var DataFile Co5Cr2Fe40Mn27Ni26_glass.data -var DumpFile dumpThermalized.xyz -var WriteData equilibrated.dat -var thermoFile thermo_thermalized.txt',
+                7:' -var buff 0.0 -var T 300 -var P 0.0 -var nevery 1000 -var ParseData 1 -var DataFile data_age0.dat -var DumpFile dumpThermalized.xyz -var WriteData equilibrated.dat -var thermoFile thermo_thermalized.txt',
                 8:' -var buff 3.0 -var T 0.1 -var sigm 1.5 -var sigmdt 0.01 -var ParseData 1 -var DataFile Equilibrated_300.dat -var DumpFile dumpSheared.xyz',
                 9:' -var natoms 1000 -var cutoff 3.52 -var ParseData 1',
                 10:' -var T 300.0 -var teq	1.0	-var up -1.0e-03 -var nevery 50 -var ParseData 1 -var DataFile data.0.txt -var DumpFile dumpUp_',
@@ -109,7 +111,7 @@ if __name__ == '__main__':
                 5:[7,6], #--- shear
                 4:[13], #--- anneal
                 6:['p3'], #--- data files based on glass age
-              }[6]
+              }[5]
     Pipeline = list(map(lambda x:LmpScript[x],indices))
     Variables = list(map(lambda x:Variable[x], indices))
     EXEC = list(map(lambda x:'lmp' if type(x) == type(0) else 'py', indices))	
