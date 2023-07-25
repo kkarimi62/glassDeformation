@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     runs	 = [0,1,2]
     #
-    nThreads = 1 #16 #8 #2
+    nThreads = 16 #8 #2
     nNode	 = 1
     #
     jobname  = {
@@ -33,7 +33,7 @@ if __name__ == '__main__':
                 4:'ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0',
                 5:'annealing/glassCo5Cr2Fe40Mn27Ni26',
                 6:'annealingMultiAge/glassCo5Cr2Fe40Mn27Ni26',
-                7:'shear/glassCo5Cr2Fe40Mn27Ni26/t0',
+                7:'shear/glassCo5Cr2Fe40Mn27Ni26/age0',
                }[7]
     sourcePath = os.getcwd() +\
                 {	0:'/junk',
