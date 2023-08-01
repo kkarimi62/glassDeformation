@@ -24,12 +24,12 @@ if __name__ == '__main__':
             #---	
             #---	densities
                 inums = lnums[ 0 ] - 1
-                string[ inums ] = "\t8:\'shear/glassCo5Cr2Fe40Mn27Ni26/age%s\',\n"%(key_age) #--- change job name
+                string[ inums ] = "\t\'8\':\'shear/glassCo5Cr2Fe40Mn27Ni26/age%s\',\n"%(key_age) #--- change job name
             #---
                 inums = lnums[ 1 ] - 1
-                string[ inums ] = "\t8:\'/../simulations/shear/glassCo5Cr2Fe40Mn27Ni26/age%s\',\n"%(key_age) #--- change job name
+                string[ inums ] = "\t\'8\':\'/../simulations/shear/glassCo5Cr2Fe40Mn27Ni26/age%s\',\n"%(key_age) #--- change job name
             #---
                 sfile=open('junk%s.py'%count,'w');sfile.writelines(string);sfile.close()
-                os.system( 'python junk%s.py'%count )
+                os.system( 'python3 junk%s.py'%count )
 #                os.system( 'rm junk%s.py'%count )
                 count += 1
