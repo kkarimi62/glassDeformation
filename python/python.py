@@ -7,6 +7,7 @@ def makeOAR( EXEC_DIR, node, core, tpartitionime, PYFIL, argv):
     confParser.set('parameters','itime0','5')
     confParser.set('parameters','itime','15')
     confParser.set('input files','path',argv)
+    confParser.set('Spline','deg_f',100)
     #
     pylib_directory = os.path.expanduser('~/Project/git/CrystalPlasticity/postprocess')
     confParser.set('python library path','path',pylib_directory)
@@ -35,15 +36,17 @@ if __name__ == '__main__':
                 '4':'VorAnlT300/Co5Cr2Fe40Mn27Ni26', 
                 '5':'D2minAnalysisT300/Co5Cr2Fe40Mn27Ni26', 
                 '7':'annealing/glassCo5Cr2Fe40Mn27Ni26', 
-                }['7']
-    DeleteExistingFolder = False
+                '8':'shear/glassCo5Cr2Fe40Mn27Ni26/age0', 
+                }['8']
+    DeleteExistingFolder = True
     readPath = os.getcwd() + {
                                 '1':'/../testRuns/Preparation/ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0',
                                 '2':'/../testRuns/glassCo5Cr2Fe40Mn27Ni26',
                                 '3':'/../testRuns/Preparation/CuZrNatom32KT300Tdot1E-1Sheared',
                                 '4':'/../testRuns/granular/silviaData/DATA_GRAINS/seed1_1001',
                                 '7':'/../simulations/annealing/glassCo5Cr2Fe40Mn27Ni26',
-                            }['7'] #--- source
+                                '8':'/../simulations/shear/glassCo5Cr2Fe40Mn27Ni26/age0',
+                            }['8'] #--- source
     EXEC_DIR = '.'     #--- path for executable file
     durtn = '23:59:59'
     mem = '64gb'
