@@ -9,7 +9,7 @@ def makeOAR( EXEC_DIR, node, core, tpartitionime, PYFIL, argv):
     confParser.set('input files','path',argv)
     confParser.set('Spline','deg_f','100')
     #
-    pylib_directory = os.path.expanduser('~/Project/git/CrystalPlasticity/postprocess')
+    pylib_directory = os.path.expanduser('~/Project/git/glassDeformation/python')
     confParser.set('python library path','path',pylib_directory)
     #--- write
     confParser.write(open('config.ini','w'))	
