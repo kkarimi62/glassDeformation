@@ -4,8 +4,8 @@ def makeOAR( EXEC_DIR, node, core, tpartitionime, PYFIL, argv):
     confParser = configparser.ConfigParser()
     confParser.read('config.ini')
     #--- set parameters
-    confParser.set('parameters','itime0','5')
-    confParser.set('parameters','itime','15')
+    confParser.set('parameters','itime0','0')
+    confParser.set('parameters','itime','2000000')
     confParser.set('input files','path',argv)
     confParser.set('Spline','deg_f','100')
     #
