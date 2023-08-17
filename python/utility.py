@@ -998,7 +998,7 @@ def PltBinary(xlin,ylin,zlin,
     CellVectorOrtho, VectorNorm = lp.GetOrthogonalBasis( box0.CellVector ) #--- box length
     Plot = True if not 'Plot' in kwargs else kwargs['Plot']
     if Plot:
-        PltBitmap(value2d<thresh, 
+        PltBitmap(value2d>thresh, 
 #              xlim=VectorNorm[0]*np.array([-0.5,0.5]),ylim=VectorNorm[1]*np.array([-0.5,0.5]),
               xlim=np.array([xc-0.5*lx,xc+0.5*lx]),ylim=np.array([yc-0.5*lx,yc+0.5*lx]),
               frac = 1.0, #--- plot a patch
@@ -1281,7 +1281,7 @@ def PlotPaperVersion(pathh_indx,
                           3:'%s/ElasticityT300/%s/eps2/itime%s/Run%s'%(os.getcwd(),mg,itimee,irun),
                           4:'%s/ElasticityT300/%s/eps2/itime%s/Run%s/ModuAnl'%(os.getcwd(),mg,itimee,irun),
                           5:'%s/Exponents/%s'%(os.getcwd(),mg),
-                          6:'%s/shear/glass%s/age0/itime%s/Run%s/D2minAnl'%(os.getcwd(),mg,itimee,irun),
+                          6:'%s/shear/glass%s/age9/itime%s/Run%s/D2minAnl'%(os.getcwd(),mg,itimee,irun),
                         }[pathh_indx]
                 file0 = {
                           0:'%s/gr.txt'%pathh,
