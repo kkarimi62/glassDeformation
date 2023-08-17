@@ -36,7 +36,7 @@ if __name__ == '__main__':
                 string[ inums ] = "\t\'8\':\'/../simulations/shear/glassCo5Cr2Fe40Mn27Ni26/age%s\',\n"%(key_age) #--- change job name
             #---
                 inums = lnums[ 2 ] - 1
-                string[ inums ] = "\tconfParser.set(\'parameters\',\'itime\',\'%d\')\n"%(Times(key_t)) #--- change job name
+                string[ inums ] = "\tconfParser.set(\'parameters\',\'itime\',\'%d\')\n"%(Times[key_t]) #--- change job name
             #---
                 sfile=open('junk%s.py'%count,'w');sfile.writelines(string);sfile.close()
                 os.system( 'python3 junk%s.py'%count )
