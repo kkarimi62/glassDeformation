@@ -13,7 +13,7 @@ def makeOAR( EXEC_DIR, node, core, tpartitionime, PYFIL, argv):
     confParser.set('python library path','path',pylib_directory)
     #--- write
     confParser.write(open('config.ini','w'))	
-    #--- set environment variables
+    #--- set environment  variables
 
     someFile = open( 'oarScript.sh', 'w' )
     print('#!/bin/bash\n',file=someFile)
@@ -36,7 +36,7 @@ if __name__ == '__main__':
                 '4':'VorAnlT300/Co5Cr2Fe40Mn27Ni26', 
                 '5':'D2minAnalysisT300/Co5Cr2Fe40Mn27Ni26', 
                 '7':'annealing/glassCo5Cr2Fe40Mn27Ni26', 
-                '8':'shear/glassCo5Cr2Fe40Mn27Ni26/age0', 
+                '8':'shear/glassCo5Cr2Fe40Mn27Ni26/age0/itime0', 
                 }['8']
     DeleteExistingFolder = True
     readPath = os.getcwd() + {
