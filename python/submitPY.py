@@ -6,7 +6,7 @@ if __name__ == '__main__':
     lnums = [ 39, 48, 8   ]
     string=open('python.py').readlines() #--- python script
     Age ={
-            0:0,
+#            0:0,
 #             1:1,
 #             2:2,
 #             3:3,
@@ -15,7 +15,7 @@ if __name__ == '__main__':
 #             6:6,
 #             7:7,
 #             8:8,
-#             9:9,
+             9:9,
          }
     
     #--- timestpes
