@@ -1229,6 +1229,7 @@ def PlotPaperVersion(pathh_indx,
                      file0_indx,
                      runs = [0],
                      times = range(0,200+1,2),
+					 age = 0,
                      **kwargs):
     
     verbose = True if 'verbose' in kwargs and kwargs['verbose'] == True else False
@@ -1281,7 +1282,7 @@ def PlotPaperVersion(pathh_indx,
                           3:'%s/ElasticityT300/%s/eps2/itime%s/Run%s'%(os.getcwd(),mg,itimee,irun),
                           4:'%s/ElasticityT300/%s/eps2/itime%s/Run%s/ModuAnl'%(os.getcwd(),mg,itimee,irun),
                           5:'%s/Exponents/%s'%(os.getcwd(),mg),
-                          6:'%s/shear/glass%s/age9/itime%s/Run%s/D2minAnl'%(os.getcwd(),mg,itimee,irun),
+                          6:'%s/shear/glass%s/age%s/itime%s/Run%s/D2minAnl'%(os.getcwd(),mg,age,itimee,irun),
                         }[pathh_indx]
                 file0 = {
                           0:'%s/gr.txt'%pathh,
