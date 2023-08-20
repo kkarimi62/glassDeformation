@@ -30,7 +30,7 @@ if __name__ == '__main__':
     for key_age in Age:
 #          for key_d in DF:
          for key_t in Times:
-             if key_t % 100 == 0:
+             if key_t % 4 == 0:
             #---	
             #---	densities
                 inums = lnums[ 0 ] - 1
