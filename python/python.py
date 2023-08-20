@@ -28,7 +28,7 @@ def makeOAR( EXEC_DIR, node, core, tpartitionime, PYFIL, argv):
 if __name__ == '__main__':
     import os
 #
-    runs	 = range(3)
+    runs	 = [0] #range(3)
     jobname  = {
                 '1':'ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0', 
                 '2':'MlTrain/Co5Cr2Fe40Mn27Ni26/itime0/Angular', 
@@ -37,7 +37,7 @@ if __name__ == '__main__':
                 '5':'D2minAnalysisT300/Co5Cr2Fe40Mn27Ni26', 
                 '7':'annealing/glassCo5Cr2Fe40Mn27Ni26', 
                 '8':'shear/glassCo5Cr2Fe40Mn27Ni26/age0/itime0', 
-                '9':'cxy/glassCo5Cr2Fe40Mn27Ni26/age0/itime0',#'hmodu/glassCo5Cr2Fe40Mn27Ni26/age0/df0', 
+                '9':'cxy/glassCo5Cr2Fe40Mn27Ni26/age0/itime0', #'hmodu/glassCo5Cr2Fe40Mn27Ni26/age0/df0', 
                 }['9']
     DeleteExistingFolder = True
     readPath = os.getcwd() + {
