@@ -79,9 +79,11 @@ if __name__ == '__main__':
 #        os.system( 'cp utility.py LammpsPostProcess2nd.py OvitosCna.py %s' % ( writPath ) ) #--- cp python module
         makeOAR( writPath, 1, 1, durtn, PYFIL, argv+"/Run%s"%counter) # --- make oar script
         os.system( 'chmod +x oarScript.sh; mv oarScript.sh %s; cp config.ini %s;cp %s/%s %s' % ( writPath, writPath, EXEC_DIR, PYFIL, writPath ) ) # --- create folder & mv oar scrip & cp executable
+        jobname0 = jobname.split('/')[0]
+        print(jobname)
         os.system( 'sbatch --partition=%s --mem=%s --time=%s --job-name %s.%s --output %s.%s.out --error %s.%s.err \
                             --chdir %s -c %s -n %s %s/oarScript.sh'\
-                           % ( partition, mem, durtn, jobname[:4], counter, jobname[:4], counter, jobname[:4], counter \
+                           % ( partition, mem, durtn, jobname0, counter, jobname0, counter, jobname0, counter \
                                , writPath, 1, 1, writPath ) ) # --- runs oarScript.sh!
 
 
