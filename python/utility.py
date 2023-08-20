@@ -3553,7 +3553,8 @@ def GetAverage( X, y, nbins ):
 
 
 def sroDensityDiscrete( vor, box,
-                AtomicRadius,     
+                AtomicRadius,
+				pypath='.',     
                  **kwargs
                
                 ):
@@ -3571,7 +3572,7 @@ def sroDensityDiscrete( vor, box,
         rad3=0.0#AtomicRadius[3]
         rad4=0.0#AtomicRadius[4]
         rad5=0.0#AtomicRadius[5]
-        os.system("ovitos OvitosCna.py \'junk.xyz\' \'VoronoiFiltrd.xyz\' 1 3 %s %s %s %s %s"%(rad1,rad2,rad3,rad4,rad5)) 
+        os.system("ovitos %s/OvitosCna.py \'junk.xyz\' \'VoronoiFiltrd.xyz\' 1 3 %s %s %s %s %s"%(pypath,rad1,rad2,rad3,rad4,rad5)) 
     
         #--- read from ovito output
         lmpDataFiltrd = lp.ReadDumpFile( 'VoronoiFiltrd.xyz' )
