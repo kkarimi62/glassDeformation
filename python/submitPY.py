@@ -28,21 +28,21 @@ if __name__ == '__main__':
     #--- 
     count = 0
     for key_age in Age:
-          for key_d in DF:
-#         for key_t in Times:
-#             if key_t % 4 == 0:
+#          for key_d in DF:
+         for key_t in Times:
+             if key_t % 4 == 0:
             #---	
             #---	densities
                 inums = lnums[ 0 ] - 1
 #                string[ inums ] = "\t\'8\':\'shear/glassCo5Cr2Fe40Mn27Ni26/age%s/itime%s\',\n"%(key_age,key_t) #--- change job name
-                string[ inums ] = "\t\'9\':\'hmodu/glassCo5Cr2Fe40Mn27Ni26/age%s/df%s\',\n"%(key_age,key_d) #--- change job name
+                string[ inums ] = "\t\'9\':\'cxy/glassCo5Cr2Fe40Mn27Ni26/age%s/itime%s\',\n"%(key_age,key_t) #--- change job name
             #---
                 inums = lnums[ 1 ] - 1
                 string[ inums ] = "\t\'8\':\'/../simulations/shear/glassCo5Cr2Fe40Mn27Ni26/age%s\',\n"%(key_age) #--- change job name
             #---
                 inums = lnums[ 2 ] - 1
-#                string[ inums ] = "    confParser.set(\'parameters\',\'itime\',\'%d\')\n"%(Times[key_t]) #--- change job name
-                string[ inums ] = "    confParser.set(\'Spline\',\'deg_f\',\'%d\')\n"%(DF[key_d]) #--- change job name
+                string[ inums ] = "    confParser.set(\'parameters\',\'itime\',\'%d\')\n"%(Times[key_t]) #--- change job name
+#                string[ inums ] = "    confParser.set(\'Spline\',\'deg_f\',\'%d\')\n"%(DF[key_d]) #--- change job name
             #---
                 sfile=open('junk%s.py'%count,'w');sfile.writelines(string);sfile.close()
                 os.system( 'python3 junk%s.py'%count )
