@@ -6,15 +6,15 @@ if __name__ == '__main__':
     lnums = [ 40, 49, 10   ]
     string=open('python.py').readlines() #--- python script
     Age ={
-#            0:0,
-#              1:1,
-#              2:2,
-#              3:3,
-#              4:4,
-#              5:5,
-#              6:6,
-#              7:7,
-#              8:8,
+           0:0,
+             1:1,
+             2:2,
+             3:3,
+             4:4,
+             5:5,
+             6:6,
+             7:7,
+             8:8,
               9:9,
          }
     
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     for key_age in Age:
 #          for key_d in DF:
          for key_t in Times:
-             if key_t % 4 == 0:
+             if key_t % 2 == 0:
             #---	
             #---	densities
                 inums = lnums[ 0 ] - 1
