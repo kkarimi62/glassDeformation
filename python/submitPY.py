@@ -34,7 +34,7 @@ if __name__ == '__main__':
             #---	
             #---	densities
                 inums = lnums[ 0 ] - 1
-                string[ inums ] = "\t\'10\':\'std/glassCo5Cr2Fe40Mn27Ni26/age%s/itime%s\',\n"%(key_age,key_t) #--- change job name
+                string[ inums ] = "\t\'10\':\'std/glassCo5Cr2Fe40Mn27Ni26/age%s\',\n"%(key_age) #--- change job name
 #                string[ inums ] = "\t\'9\':\'cxy/glassCo5Cr2Fe40Mn27Ni26/age%s/itime%s\',\n"%(key_age,key_t) #--- change job name
             #---
                 inums = lnums[ 1 ] - 1
