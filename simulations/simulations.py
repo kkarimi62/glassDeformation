@@ -32,14 +32,14 @@ if __name__ == '__main__':
                 2:'CuZrNatom32KT300Tdot1E-1Elasticity',
                 4:'ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0',
                 7:'shear/glassCo5Cr2Fe40Mn27Ni26/age0',
-                5:'annealing/glassCoNiCrFe',
+                5:'annealing/glassCoNiFe',
                }[5]
     sourcePath = os.getcwd() +\
                 {	0:'/junk',
                     1:'/../postprocess/NiCoCrNatom1K',
                     2:'/CuZrNatom32KT300Tdot1E-1Sheared',
                     5:'/annealing/glassCo5Cr2Fe40Mn27Ni26',
-                    3:'/glass/glassCoNiCrFe',
+                    3:'/glass/glassCoNiFe',
                 }[3] #--- must be different than sourcePath
         #
     sourceFiles = { 0:False,
@@ -50,7 +50,7 @@ if __name__ == '__main__':
                     5:['swapped.dat'], #--- only one partition! for multiple ones, use 'submit.py'
                     6:['traj.dump'],
                     8:['data_age0.dat'], 
-                    7:['CoNiCrFe_glass.data'],
+                    7:['CoNiFe_glass.data'],
                  }[7] #--- to be copied from the above directory
     #
     EXEC_DIR = '/home/kamran.karimi1/Project/git/lammps2nd/lammps/src' #--- path for executable file
@@ -94,7 +94,7 @@ if __name__ == '__main__':
                 10:' -var T 300.0 -var teq	1.0	-var up -1.0e-03 -var nevery 50 -var ParseData 1 -var DataFile data.0.txt -var DumpFile dumpUp_',
                 101:' -var T 300.0 -var teq	1.0	-var up 1.0e-03 -var nevery 50 -var ParseData 1 -var DataFile data.0.txt -var DumpFile dumpDown_',
                 11:' -var T 300.0 -var A 0.1 -var Tp 10.0 -var nevery 100 -var DumpFile shearOscillation.xyz -var ParseData 1 -var DataFile data.0.txt', #--- temp(T), amplitude in distance (A), period (Tp)
-                13:' -var buff 0.0 -var buffy 0.0 -var T 300 -var swap_every 1 -var swap_atoms 1 -var rn %s -var dump_every 100 -var ParseData 1 -var DataFile CoNiCrFe_glass.data -var DumpFile traj.dump -var thermoFile thermo_swap.txt -var ntype 5 -var WriteData swapped.dat'%np.random.randint(1001,100000),
+                13:' -var buff 0.0 -var buffy 0.0 -var T 300 -var swap_every 1 -var swap_atoms 1 -var rn %s -var dump_every 100 -var ParseData 1 -var DataFile CoNiFe_glass.data -var DumpFile traj.dump -var thermoFile thermo_swap.txt -var ntype 5 -var WriteData swapped.dat'%np.random.randint(1001,100000),
                 'p0':' swapped_600.dat 10.0 %s'%(os.getcwd()+'/../postprocess'),
                 'p1':' swapped_600.dat ElasticConst.txt DumpFileModu.xyz %s'%(os.getcwd()+'/../postprocess'),
                 'p2':' %s 3.52 40.0 20.0 40.0 data.txt'%(os.getcwd()+'/../postprocess'),
