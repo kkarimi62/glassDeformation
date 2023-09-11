@@ -30,7 +30,7 @@ if __name__ == '__main__':
                 string[ inums ] = "\t7:\'shear/glass%s/age%s\',\n"%(glass,key_age) #--- change job name
             #---
                 inums = lnums[ 1 ] - 1
-                string[ inums ] = "\t5:\'annealing/glass%s\',\n"%(glass) #--- change job name
+                string[ inums ] = "\t5:\'/annealing/glass%s\',\n"%(glass) #--- change job name
             #---
                 inums = lnums[ 2 ] - 1
                 string[ inums ] = "\t\'p3\':\' traj.dump 100 %s data_aged.dat\',\n"%(key_age)
