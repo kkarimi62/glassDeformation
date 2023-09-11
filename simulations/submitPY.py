@@ -16,16 +16,18 @@ if __name__ == '__main__':
             7:7,
             8:8,
             9:9,
+            10:10,
 
          }
 
     #--- 
     count = 0
+    glass='Co5Cr2Fe40Mn27Ni26 CoNiCrFe CoNiCrFeMn CoNiFe'.split()[1]
     for key_age in Age:
             #---	
             #---	densities
                 inums = lnums[ 0 ] - 1
-                string[ inums ] = "\t7:\'shear/glassCo5Cr2Fe40Mn27Ni26/age%s\',\n"%(key_age) #--- change job name
+                string[ inums ] = "\t7:\'shear/glass%s/age%s\',\n"%(glass,key_age) #--- change job name
             #---
                 inums = lnums[ 1 ] - 1
                 string[ inums ] = "\t\'p3\':\' traj.dump 100 %s data_aged.dat\',\n"%(key_age)
