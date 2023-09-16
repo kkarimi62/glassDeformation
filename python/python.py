@@ -48,7 +48,7 @@ if __name__ == '__main__':
                                 '4':'/../testRuns/granular/silviaData/DATA_GRAINS/seed1_1001',
                                 '7':'/../simulations/annealing/glassCo5Cr2Fe40Mn27Ni26',
                                 '8':'/../simulations/shear/glassCo5Cr2Fe40Mn27Ni26',
-                            }['8'] #--- source
+                            }['7'] #--- source
     EXEC_DIR = '.'     #--- path for executable file
     durtn = '23:59:59'
     mem = '64gb'
