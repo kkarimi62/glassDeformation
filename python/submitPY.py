@@ -4,7 +4,7 @@ if __name__ == '__main__':
     import numpy as np
     #---
     lnums = [ 41, 50] #, 10   ]
-    glass = 'Co5Cr2Fe40Mn27Ni26 CoNiCrFeMn'.split()[0]
+    glass = 'Co5Cr2Fe40Mn27Ni26 CoNiCrFeMn'.split()[1]
     
     
     string=open('python.py').readlines() #--- python script
@@ -38,11 +38,11 @@ if __name__ == '__main__':
             #---	
             #---	densities
                 inums = lnums[ 0 ] - 1
-                string[ inums ] = "\t\'10\':\'shear/glassCo5Cr2Fe40Mn27Ni26/age%s\',\n"%(key_age) #--- change job name
+                string[ inums ] = "\t\'10\':\'shear/glass%s/age%s\',\n"%(glass,key_age) #--- change job name
 #                string[ inums ] = "\t\'9\':\'cxy/glassCo5Cr2Fe40Mn27Ni26/age%s/itime%s\',\n"%(key_age,key_t) #--- change job name
             #---
                 inums = lnums[ 1 ] - 1
-                string[ inums ] = "\t\'8\':\'/../simulations/shear/glassCo5Cr2Fe40Mn27Ni26/age%s\',\n"%(key_age) #--- change job name
+                string[ inums ] = "\t\'8\':\'/../simulations/shear/glass%s/age%s\',\n"%(glass,key_age) #--- change job name
             #---
 #                inums = lnums[ 2 ] - 1
 #                string[ inums ] = "    confParser.set(\'parameters\',\'itime\',\'%d\')\n"%(Times[key_t]) #--- change job name
