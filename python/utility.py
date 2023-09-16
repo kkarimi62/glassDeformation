@@ -1328,10 +1328,10 @@ def PlotPaperVersion(pathh_indx,
                 if not timeseries:   #--- plot each time  
                     if verbose:
                         print('xdata=',xdata,'\nydata=',ydata,'\nerry=',erry,'\nerrx=',errx)                        
-                    attrs={ 'color':colors[count],
-                            'markersize':markersizes[count],
-                            'marker':markers[count],
-                            'markerfacecolor':colors[count],
+                    attrs={ 'color':colors[count%7],
+                            'markersize':markersizes[count%7],
+                            'marker':markers[count%7],
+                            'markerfacecolor':colors[count%7],
                             'markeredgecolor':'white', #'black' if not fillstyles[count] else None,
                             'label':'%s/irun%s/itime%s'%(mg,irun,itimee),
                            'markevery':nevery,
@@ -2772,7 +2772,7 @@ def PltBitmap( value,
     #
     if 'DrawFrame' in kwargs: 
         DrawFrame(ax, *kwargs['DrawFrame'])
-    plt.savefig(title,dpi=2*75,bbox_inches='tight',pad_inches=0.0)
+    plt.savefig(title,dpi=300,bbox_inches='tight',pad_inches=0.0)
     plt.show()
     
     
