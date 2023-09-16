@@ -24,23 +24,23 @@ if __name__ == '__main__':
 
     runs	 = [0,1,2]
     #
-    nThreads = 8 #16 #8 #2
+    nThreads = 16 #8 #2
     nNode	 = 1
     #
     jobname  = {
                 1:'CuZrNatom32KT300Tdot1E-3Sheared',
                 2:'CuZrNatom32KT300Tdot1E-1Elasticity',
                 4:'ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0',
-                5:'annealing/glassCoNiFe',
                 7:'shear/glassCoNiCrFeMn/age0',
-               }[7]
+                5:'annealing/glassCoNiFe',
+               }[5]
     sourcePath = os.getcwd() +\
                 {	0:'/junk',
                     1:'/../postprocess/NiCoCrNatom1K',
                     2:'/CuZrNatom32KT300Tdot1E-1Sheared',
-                    3:'/glass/glassCoNiFe',
                     5:'/annealing/glassCoNiCrFeMn',
-                }[5] #--- must be different than sourcePath
+                    3:'/glass/glassCoNiFe',
+                }[3] #--- must be different than sourcePath
         #
     sourceFiles = { 0:False,
                     1:['Equilibrated_300.dat'],
@@ -48,10 +48,10 @@ if __name__ == '__main__':
                     4:['data_minimized.txt'],
                     3:['data.0.txt','Co5Cr2Fe40Mn27Ni26_glass.dump','Co5Cr2Fe40Mn27Ni26.txt'], 
                     5:['swapped.dat'], #--- only one partition! for multiple ones, use 'submit.py'
-                    7:['CoNiFe_glass.data'],
                     8:['data_age0.dat'], 
                     6:['traj.dump'],
-                 }[6] #--- to be copied from the above directory
+                    7:['CoNiFe_glass.data'],
+                 }[7] #--- to be copied from the above directory
     #
     EXEC_DIR = '/home/kamran.karimi1/Project/git/lammps2nd/lammps/src' #--- path for executable file
     #
@@ -107,9 +107,9 @@ if __name__ == '__main__':
                 1:[5,7,0,6], #--- minimize, thermalize,melt & quench, shear
                 0:[5,7,0,13], #--- minimize, thermalize,melt & quench, anneal
                 5:[7,6], #--- shear
-                4:[13], #--- anneal
                 6:['p3',7,6], #--- create data files based on glass age, thermalize, shear
-              }[6]
+                4:[13], #--- anneal
+              }[4]
     Pipeline = list(map(lambda x:LmpScript[x],indices))
     Variables = list(map(lambda x:Variable[x], indices))
     EXEC = list(map(lambda x:'lmp' if type(x) == type(0) else 'py', indices))	
