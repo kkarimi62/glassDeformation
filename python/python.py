@@ -38,7 +38,7 @@ if __name__ == '__main__':
                 '7':'annealing/glassCo5Cr2Fe40Mn27Ni26', 
                 '8':'shear/glassCo5Cr2Fe40Mn27Ni26/age0/itime0', 
                 '9':'cxy/glassCo5Cr2Fe40Mn27Ni26/age0/itime0', #'hmodu/glassCo5Cr2Fe40Mn27Ni26/age0/df0', 
-                '10':'shear/glassCo5Cr2Fe40Mn27Ni26/age0', 
+                '10':'annealing/glassCo5Cr2Fe40Mn27Ni26', 
                 }['10']
     DeleteExistingFolder = True
     readPath = os.getcwd() + {
@@ -47,7 +47,7 @@ if __name__ == '__main__':
                                 '3':'/../testRuns/Preparation/CuZrNatom32KT300Tdot1E-1Sheared',
                                 '4':'/../testRuns/granular/silviaData/DATA_GRAINS/seed1_1001',
                                 '7':'/../simulations/annealing/glassCo5Cr2Fe40Mn27Ni26',
-                                '8':'/../simulations/shear/glassCo5Cr2Fe40Mn27Ni26/age0',
+                                '8':'/../simulations/shear/glassCo5Cr2Fe40Mn27Ni26',
                             }['8'] #--- source
     EXEC_DIR = '.'     #--- path for executable file
     durtn = '23:59:59'
