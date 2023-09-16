@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
     #--- 
     count = 0
-    glass='Co5Cr2Fe40Mn27Ni26 CoNiCrFe CoNiCrFeMn CoNiFe'.split()[1]
+    glass='Co5Cr2Fe40Mn27Ni26 CoNiCrFe CoNiCrFeMn CoNiFe'.split()[3]
     for key_age in Age:
             #---	
             #---	densities
