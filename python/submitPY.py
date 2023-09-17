@@ -4,7 +4,7 @@ if __name__ == '__main__':
     import numpy as np
     #---
     lnums = [ 41, 50] #, 10   ]
-    glass = 'Co5Cr2Fe40Mn27Ni26 CoNiCrFeMn'.split()[1]
+    glass = 'Co5Cr2Fe40Mn27Ni26 CoNiCrFe CoNiCrFeMn CoNiFe'.split()[1]
     
     
     string=open('python.py').readlines() #--- python script
