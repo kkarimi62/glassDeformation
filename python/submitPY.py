@@ -10,15 +10,15 @@ if __name__ == '__main__':
     string=open('python.py').readlines() #--- python script
     Age ={
            0:0,
-#              1:1,
-#              2:2,
-#              3:3,
-#              4:4,
-#              5:5,
+             1:1,
+             2:2,
+             3:3,
+             4:4,
+             5:5,
 #              6:6,
 #              7:7,
 #              8:8,
-              9:9,
+             9:9,
 #              10:10,
          }
     
@@ -39,7 +39,7 @@ if __name__ == '__main__':
             #---	densities
                 inums = lnums[ 0 ] - 1
 #                string[ inums ] = "\t\'10\':\'shear/glass%s/age%s\',\n"%(glass,key_age) #--- change job name
-                string[ inums ] = "\t\'10\':\'cxy/glass%s/age%s/itime%s\',\n"%(glass,key_age,key_t) #--- change job name
+                string[ inums ] = "\t\'10\':\'rhoico/glass%s/age%s/itime%s\',\n"%(glass,key_age,key_t) #--- change job name
             #---
                 inums = lnums[ 1 ] - 1
                 string[ inums ] = "\t\'8\':\'/../simulations/shear/glass%s/age%s\',\n"%(glass,key_age) #--- change job name
