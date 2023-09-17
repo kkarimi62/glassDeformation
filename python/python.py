@@ -38,7 +38,7 @@ if __name__ == '__main__':
                 '7':'annealing/glassCo5Cr2Fe40Mn27Ni26', 
                 '8':'shear/glassCo5Cr2Fe40Mn27Ni26/age0/itime0', 
                 '9':'cxy/glassCo5Cr2Fe40Mn27Ni26/age0/itime0', #'hmodu/glassCo5Cr2Fe40Mn27Ni26/age0/df0', 
-                '10':'shear/glassCoNiCrFeMn/age0', 
+                '10':'shear/glassCoNiCrFeMn/age0/itime0', 
                 }['10']
     DeleteExistingFolder = True
     readPath = os.getcwd() + {
