@@ -33,19 +33,19 @@ if __name__ == '__main__':
     count = 0
     for key_age in Age:
 #          for key_d in DF:
-         for key_t in Times:
-             if key_t % 2 == 0:
+#          for key_t in Times:
+#              if key_t % 2 == 0:
             #---	
             #---	densities
                 inums = lnums[ 0 ] - 1
-#                string[ inums ] = "\t\'10\':\'shear/glass%s/age%s\',\n"%(glass,key_age) #--- change job name
-                string[ inums ] = "\t\'10\':\'rhoico/glass%s/age%s/itime%s\',\n"%(glass,key_age,key_t) #--- change job name
+                string[ inums ] = "\t\'10\':\'rhoico/glass%s/age%s\',\n"%(glass,key_age) #--- change job name
+#                string[ inums ] = "\t\'10\':\'cxy/glass%s/age%s/itime%s\',\n"%(glass,key_age,key_t) #--- change job name
             #---
                 inums = lnums[ 1 ] - 1
                 string[ inums ] = "\t\'8\':\'/../simulations/shear/glass%s/age%s\',\n"%(glass,key_age) #--- change job name
             #---
                 inums = lnums[ 2 ] - 1
-                string[ inums ] = "    confParser.set(\'parameters\',\'itime\',\'%d\')\n"%(Times[key_t]) #--- change job name
+#                string[ inums ] = "    confParser.set(\'parameters\',\'itime\',\'%d\')\n"%(Times[key_t]) #--- change job name
 #               string[ inums ] = "    confParser.set(\'Spline\',\'deg_f\',\'%d\')\n"%(DF[key_d]) #--- change job name
             #---
                 sfile=open('junk%s.py'%count,'w');sfile.writelines(string);sfile.close()
