@@ -3,7 +3,7 @@ if __name__ == '__main__':
     import os
     import numpy as np
     #---
-    lnums = [ 41, 50] #, 10   ]
+    lnums = [ 41, 50, 8   ]
     glass = 'Co5Cr2Fe40Mn27Ni26 CoNiCrFe CoNiCrFeMn CoNiFe'.split()[2]
     
     
