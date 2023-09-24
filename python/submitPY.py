@@ -45,7 +45,7 @@ if __name__ == '__main__':
                 string[ inums ] = "\t\'8\':\'/../simulations/shear/glass%s/age%s\',\n"%(glass,key_age) #--- change job name
             #---
                 inums = lnums[ 2 ] - 1
-                string[ inums ] = "    confParser.set(\'parameters\',\'itime\',\'%d\')\n"%(Times[key_t]) #--- change job name
+                string[ inums ] = "    confParser.set(\'parameters\',\'itime\',\'%d\')\n"%(1960000) #Times[key_t]) #--- change job name
 #               string[ inums ] = "    confParser.set(\'Spline\',\'deg_f\',\'%d\')\n"%(DF[key_d]) #--- change job name
             #---
                 sfile=open('junk%s.py'%count,'w');sfile.writelines(string);sfile.close()
