@@ -41,7 +41,7 @@ if __name__ == '__main__':
                     2:'/CuZrNatom32KT300Tdot1E-1Sheared',
                     3:'/glass/glassCoNiFe',
                     5:'/annealing/glassCoNiFe',
-                    8:'/../data/cantor/data-dpa0',
+                    8:'/../data/cantor/data-dpa/dpa0',
                 }[8] #--- must be different than sourcePath
         #
     sourceFiles = { 0:False,
