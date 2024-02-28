@@ -84,6 +84,7 @@ if __name__ == '__main__':
                     'p1':'WriteDump.py',
                     'p2':'DislocateEdge.py',
                     'p3':'splitDump.py',
+                         'p4':'preprocess_data.py',
                 } 
     #
     Variable = {
@@ -102,6 +103,7 @@ if __name__ == '__main__':
                 'p1':' swapped_600.dat ElasticConst.txt DumpFileModu.xyz %s'%(os.getcwd()+'/../postprocess'),
                 'p2':' %s 3.52 40.0 20.0 40.0 data.txt'%(os.getcwd()+'/../postprocess'),
                 'p3':' traj.dump 100 0 data_aged.dat', #dump file, nevery, file index
+                    'p4':' lammps_data.dat lammps_data.dat %s'%(os.getcwd()+'/lmpScripts'),
                 } 
     #--- different scripts in a pipeline
     indices = {
@@ -112,7 +114,7 @@ if __name__ == '__main__':
                 5:[7,6], #--- shear
                 4:[13], #--- anneal
                 6:['p3',7,6], #--- create data files based on glass age, thermalize, shear
-                8:[7,6], #--- irradiation: thermalize, shear
+                8:['p4',7,6], #--- irradiation: thermalize, shear
               }[8]
     Pipeline = list(map(lambda x:LmpScript[x],indices))
     Variables = list(map(lambda x:Variable[x], indices))
