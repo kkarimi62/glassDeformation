@@ -22,7 +22,7 @@ if __name__ == '__main__':
     import os
     import numpy as np
 
-    runs	 = [0,1,2]
+    runs	 = [0]#,1,2]
     #
     nThreads = 16 # 8 #2
     nNode	 = 1
@@ -33,14 +33,16 @@ if __name__ == '__main__':
                 4:'ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0',
                 5:'annealing/glassCoNiFe',
                 7:'shear/glassCoNiFe/age0',
-               }[7]
+                8:'shear/glassCantor/dpa0',
+               }[8]
     sourcePath = os.getcwd() +\
                 {	0:'/junk',
                     1:'/../postprocess/NiCoCrNatom1K',
                     2:'/CuZrNatom32KT300Tdot1E-1Sheared',
                     3:'/glass/glassCoNiFe',
                     5:'/annealing/glassCoNiFe',
-                }[5] #--- must be different than sourcePath
+                    8:'/../data/cantor/data-dpa0',
+                }[8] #--- must be different than sourcePath
         #
     sourceFiles = { 0:False,
                     1:['Equilibrated_300.dat'],
@@ -51,7 +53,8 @@ if __name__ == '__main__':
                     8:['data_age0.dat'], 
                     7:['CoNiFe_glass.data'],
                     6:['traj.dump'],
-                 }[6] #--- to be copied from the above directory
+                    8:['lammps_data.dat'],
+                 }[8] #--- to be copied from the above directory
     #
     EXEC_DIR = '/home/kamran.karimi1/Project/git/lammps2nd/lammps/src' #--- path for executable file
     #
@@ -88,7 +91,7 @@ if __name__ == '__main__':
                 4:' -var T 600 -var t_sw 20.0 -var DataFile Equilibrated_600.dat -var nevery 1000 -var ParseData 1 -var WriteData swapped_600.dat', 
                 5:' -var buff 0.0 -var nevery 1000 -var ParseData 0 -var natoms 10000 -var ntype 2 -var cutoff 3.54  -var DumpFile dumpMin.xyz -var WriteData data_minimized.dat -var seed0 %s -var seed1 %s -var seed2 %s -var seed3 %s'%tuple(np.random.randint(1001,9999,size=4)), 
                 6:' -var buff 0.0 -var T 300.0 -var GammaXY 0.2 -var GammaDot 1.0e-04 -var ndump 100 -var ParseData 1 -var DataFile equilibrated.dat -var DumpFile dumpSheared.xyz -var WriteData sheared.dat -var thermoFile thermo-shear.txt',
-                7:' -var buff 0.0 -var T 300 -var P 0.0 -var nevery 1000 -var ParseData 1 -var DataFile data_aged.dat -var DumpFile dumpThermalized.xyz -var WriteData equilibrated.dat -var thermoFile thermo_thermalized.txt',
+                7:' -var buff 0.0 -var T 300 -var P 0.0 -var nevery 1000 -var ParseData 1 -var DataFile lammps_data.dat -var DumpFile dumpThermalized.xyz -var WriteData equilibrated.dat -var thermoFile thermo_thermalized.txt',
                 8:' -var buff 3.0 -var T 0.1 -var sigm 1.5 -var sigmdt 0.01 -var ParseData 1 -var DataFile Equilibrated_300.dat -var DumpFile dumpSheared.xyz',
                 9:' -var natoms 1000 -var cutoff 3.52 -var ParseData 1',
                 10:' -var T 300.0 -var teq	1.0	-var up -1.0e-03 -var nevery 50 -var ParseData 1 -var DataFile data.0.txt -var DumpFile dumpUp_',
@@ -109,7 +112,8 @@ if __name__ == '__main__':
                 5:[7,6], #--- shear
                 4:[13], #--- anneal
                 6:['p3',7,6], #--- create data files based on glass age, thermalize, shear
-              }[6]
+                8:[7,6], #--- irradiation: thermalize, shear
+              }[8]
     Pipeline = list(map(lambda x:LmpScript[x],indices))
     Variables = list(map(lambda x:Variable[x], indices))
     EXEC = list(map(lambda x:'lmp' if type(x) == type(0) else 'py', indices))	
@@ -117,7 +121,7 @@ if __name__ == '__main__':
     DeleteExistingFolder = True
     #
     EXEC_lmp = ['lmp_mpi','lmp_serial'][0]
-    durtn = ['167:59:59','96:59:59','00:59:59'][0]
+    durtn = ['167:59:59','96:59:59','00:59:59'][2]
     mem = '8gb'
     partition = ['gpu-v100','parallel','cpu2019','single'][2]
     #---
@@ -140,7 +144,7 @@ if __name__ == '__main__':
             os.system( 'ln -s %s/%s %s' %( SCRPT_DIR, script, writPath) ) #--- lammps script: periodic x, pxx, vy, load
         if sourceFiles: 
             for sf in sourceFiles:
-                os.system( 'ln -s %s/Run%s/%s %s' %(sourcePath, counter, sf, writPath) ) #--- lammps script: periodic x, pxx, vy, load
+                os.system( 'cp %s/Run%s/%s %s' %(sourcePath, counter, sf, writPath) ) #--- lammps script: periodic x, pxx, vy, load
         #---
         makeOAR( path, 1, nThreads, durtn) # --- make oar script
         os.system( 'chmod +x oarScript.sh; mv oarScript.sh %s' % ( writPath) ) # --- create folder & mv oar scrip & cp executable
