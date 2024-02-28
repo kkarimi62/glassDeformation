@@ -45,7 +45,7 @@ if __name__ == '__main__':
 	lmpData.GetCords() #ReadData()
 	
 	#--- mass is hard-coded!
-	mass     = { 1:58.71, 2:58.71 }
+	mass     = { 1: 58.933,2: 58.69,3: 51.96,4: 55.847,5: 54.94 }
 	
 	#--- atoms & box
 	itime    = list(lmpData.coord_atoms_broken.keys())[ 0 ]
@@ -59,10 +59,10 @@ if __name__ == '__main__':
 
 	#--- shift coords
 	#    Center( atoms, box )
-	zeroShift( atoms, box )
+#	zeroShift( atoms, box )
 
 	#--- set atom types 
-	SetTypes( atoms, 1 )
+#	SetTypes( atoms, 1 )
 
 	#--- save
 	lp.WriteDataFile(atoms,box,mass).Write( fout )
