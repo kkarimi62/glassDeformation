@@ -33,7 +33,7 @@ if __name__ == '__main__':
                 4:'ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0',
                 5:'annealing/glassCoNiFe',
                 7:'shear/glassCoNiFe/age0',
-                8:'shear/glassCantor/dpa0',
+                8:'shear/glassCantor/dpa1',
                }[8]
     sourcePath = os.getcwd() +\
                 {	0:'/junk',
@@ -41,7 +41,7 @@ if __name__ == '__main__':
                     2:'/CuZrNatom32KT300Tdot1E-1Sheared',
                     3:'/glass/glassCoNiFe',
                     5:'/annealing/glassCoNiFe',
-                    8:'/../data/cantor/data-dpa/dpa0',
+                    8:'/../data/cantor/data-dpa/dpa1',
                 }[8] #--- must be different than sourcePath
         #
     sourceFiles = { 0:False,
