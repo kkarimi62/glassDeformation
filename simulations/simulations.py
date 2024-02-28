@@ -10,7 +10,6 @@ def makeOAR( EXEC_DIR, node, core, time ):
 #	 print >> someFile, "$EXEC_DIR/%s < in.txt -var OUT_PATH %s -var MEAM_library_DIR %s"%( EXEC, OUT_PATH, MEAM_library_DIR )
 #	cutoff = 1.0 / rho ** (1.0/3.0)
     for script,var,indx, execc in zip(Pipeline,Variables,range(100),EXEC):
-        print(execc)
         if execc == 'lmp': #_mpi' or EXEC == 'lmp_serial':
             print >> someFile, "mpirun --oversubscribe -np %s $EXEC_DIR/lmp_mpi < %s -echo screen -var OUT_PATH %s -var PathEam %s -var INC %s %s \n"%(nThreads*nNode, script, OUT_PATH, MEAM_library_DIR, SCRPT_DIR, var)
         elif execc == 'py':
@@ -34,7 +33,7 @@ if __name__ == '__main__':
                 4:'ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0',
                 5:'annealing/glassCoNiFe',
                 7:'shear/glassCoNiFe/age0',
-                8:'shear/glassCantor/dpa1',
+                8:'shear/glassCantor/dpa2',
                }[8]
     sourcePath = os.getcwd() +\
                 {	0:'/junk',
@@ -42,7 +41,7 @@ if __name__ == '__main__':
                     2:'/CuZrNatom32KT300Tdot1E-1Sheared',
                     3:'/glass/glassCoNiFe',
                     5:'/annealing/glassCoNiFe',
-                    8:'/../data/cantor/data-dpa/dpa1',
+                    8:'/../data/cantor/data-dpa/dpa2',
                 }[8] #--- must be different than sourcePath
         #
     sourceFiles = { 0:False,
@@ -115,7 +114,7 @@ if __name__ == '__main__':
                 5:[7,6], #--- shear
                 4:[13], #--- anneal
                 6:['p3',7,6], #--- create data files based on glass age, thermalize, shear
-                8:['p4',7,6], #--- irradiation: thermalize, shear
+                8:['p4',7,6], #--- irradiation: pre-process, thermalize, shear
               }[8]
     Pipeline = list(map(lambda x:LmpScript[x],indices))
     Variables = list(map(lambda x:Variable[x], indices))
