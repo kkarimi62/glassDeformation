@@ -33,7 +33,7 @@ if __name__ == '__main__':
                 4:'ElasticityT300/Co5Cr2Fe40Mn27Ni26/itime0',
                 5:'annealing/glassCoNiFe',
                 7:'shear/glassCoNiFe/age0',
-                8:'shear/glassCantor/dpa1',
+                8:'shear/glassCantor/dpa0',
                }[8]
     sourcePath = os.getcwd() +\
                 {	0:'/junk',
@@ -41,7 +41,7 @@ if __name__ == '__main__':
                     2:'/CuZrNatom32KT300Tdot1E-1Sheared',
                     3:'/glass/glassCoNiFe',
                     5:'/annealing/glassCoNiFe',
-                    8:'/../data/cantor/data-dpa/dpa1',
+                    8:'/../data/cantor/data-dpa/dpa0',
                 }[8] #--- must be different than sourcePath
         #
     sourceFiles = { 0:False,
@@ -114,7 +114,7 @@ if __name__ == '__main__':
                 5:[7,6], #--- shear
                 4:[13], #--- anneal
                 6:['p3',7,6], #--- create data files based on glass age, thermalize, shear
-                8:['p4',7,6], #--- irradiation: pre-process, thermalize, shear
+                8:[7,6], #--- irradiation: pre-process, thermalize, shear
               }[8]
     Pipeline = list(map(lambda x:LmpScript[x],indices))
     Variables = list(map(lambda x:Variable[x], indices))
