@@ -39,7 +39,7 @@ if __name__ == '__main__':
                 '8':'shear/glassCo5Cr2Fe40Mn27Ni26/age0/itime0', 
                 '9':'cxy/glassCo5Cr2Fe40Mn27Ni26/age0/itime0', #'hmodu/glassCo5Cr2Fe40Mn27Ni26/age0/df0', 
                 '10':'shear/glassCoNiCrFeMn/age0', 
-                '11':'shear/glassCantor/dpa0', 
+                '11':'shear/glassCantor/dpa1', 
                 }['11']
     DeleteExistingFolder = True
     readPath = os.getcwd() + {
@@ -49,7 +49,7 @@ if __name__ == '__main__':
                                 '4':'/../testRuns/granular/silviaData/DATA_GRAINS/seed1_1001',
                                 '7':'/../simulations/annealing/glassCo5Cr2Fe40Mn27Ni26',
                                 '8':'/../simulations/shear/glassCoNiCrFeMn/age0',
-                                '11':'/../simulations/shear/glassCantor/dpa0',
+                                '11':'/../simulations/shear/glassCantor/dpa1',
                             }['11'] #--- source
     EXEC_DIR = '.'     #--- path for executable file
     durtn = '23:59:59'
