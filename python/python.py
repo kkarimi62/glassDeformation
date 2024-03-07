@@ -89,5 +89,5 @@ if __name__ == '__main__':
                             --chdir %s -c %s -n %s %s/oarScript.sh'\
                            % ( partition, mem, durtn, jobname0, counter, jobname0, counter, jobname0, counter \
                                , writPath, 1, 1, writPath ) ) # --- runs oarScript.sh!
-
+        print('jobname=%s'%jobname)
 
