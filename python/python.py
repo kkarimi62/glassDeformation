@@ -61,8 +61,9 @@ if __name__ == '__main__':
         1:'analyzePlasticity.ipynb',
         2:'test2nd.ipynb',
         3:'junk.ipynb',
+        4:'analyzePlasticity_irradiation.ipynb',
         }
-    keyno = 1
+    keyno = 4
     convert_to_py = True
 #---
 #---
